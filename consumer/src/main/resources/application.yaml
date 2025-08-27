@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: notification-consumer
+  profiles:
+    active: local
+    include: event # local 일 때, application-event.yaml 을 같이 로드

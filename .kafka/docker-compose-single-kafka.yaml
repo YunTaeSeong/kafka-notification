@@ -1,0 +1,19 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.10
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.10
+    depends_on: # 서비스 간 의존성
+      - zookeeper # Kafka가 시작되기 전에 zookeeper 서비스가 먼저 시작. Kafka는 Zookeeper에 의존
+    ports:
+      - "9092:9092" # 로컬 9092 포트로 들어오는 요청을 Kafka 컨테이너의 9092 포트로 전달
+    environment:
+      KAFKA_BROKER_ID: 1 # 브로커를 식별하는 ID
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181 # Kafka가 연결할 Zookeeper의 주소
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092  # Kafka 클라이언트가 브로커에 연결하기 위해 사용하는 외부 접속 주소
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1 # Consumer Offset을 저장하는 내부 토픽인 consumer_offsets의 복제 계수

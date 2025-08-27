@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    function:
+      definition: comment; like; follow; # 메시지를 수신했을 때 처리할 함수
+    stream:
+      binder:
+        brokers: localhost:9092
+      bindings:
+        comment-in-0: # 입력 채널, 채널 규칙
+          destination: comment # comment event를 소비하는 Kafka의 topic 이름
+          content-type: application/json
+          group: notification-consumer
+          consumer:
+            max-attempts: 2 # 메시지를 처리할 떄 최대로 몇번 처리할 것인지
+        like-in-0:
+          destination: like
+          content-type: application/json
+          group: notification-consumer
+          consumer:
+            max-attempts: 2
+        follow-in-0:
+          destination: follow
+          content-type: application/json
+          group: notification-consumer
+          consumer:
+            max-attempts: 2
+
