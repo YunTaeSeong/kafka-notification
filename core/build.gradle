@@ -1,2 +1,9 @@
 dependencies {
+    // MongoDB 연결용
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    // Testcontainers (테스트 전용)
+    implementation "org.testcontainers:junit-jupiter:1.21.3"
+    implementation "org.testcontainers:mongodb:1.21.3"
+
 }

@@ -1,25 +1,31 @@
 package com.notification.kafka;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+@SpringBootApplication
 class NotificationRepositoryMemoryImplTest {
 
-    private final NotificationRepositoryMemoryImpl sut = new NotificationRepositoryMemoryImpl();
+    @Autowired
+    private NotificationRepository sut;
+
+    private final Long userId = 2L;
     private final Instant now = Instant.now();
     private final Instant deletedAt = Instant.now().plus(90, ChronoUnit.DAYS);
 
     @Test
     void test_save() throws Exception{
         // 저장 객체 생성과 저장
-        sut.save(new Notification("1", 2L, NotificationType.LIKE, now, deletedAt));
+        sut.save(new Notification("1", userId, NotificationType.LIKE, now, deletedAt));
         Optional<Notification> notification = sut.findById("1");
 
         // 조회했을 떄 객체가 있는가?
@@ -28,23 +34,27 @@ class NotificationRepositoryMemoryImplTest {
 
     @Test
     void test_findById() throws Exception{
-        sut.save(new Notification("2", 2L, NotificationType.LIKE, now, deletedAt));
-        Optional<Notification> optionalNotification = sut.findById("2");
+        String id = "2";
+
+        sut.save(new Notification(id, userId, NotificationType.LIKE, now, deletedAt));
+        Optional<Notification> optionalNotification = sut.findById(id);
 
         Notification notification = optionalNotification.orElseThrow();
-        assertEquals(notification.id, "2");
-        assertEquals(notification.userId, 2L);
-        assertEquals(notification.createdAt, now);
-        assertEquals(notification.deletedAt, deletedAt);
+        assertEquals(notification.id, id);
+        assertEquals(notification.userId, userId);
+        assertEquals(notification.createdAt.getEpochSecond(), now.getEpochSecond());
+        assertEquals(notification.deletedAt.getEpochSecond(), deletedAt.getEpochSecond());
 
     }
 
     @Test
     void test_delete_by_id() throws Exception{
-        sut.save(new Notification("3", 2L, NotificationType.LIKE, now, deletedAt));
-        sut.deleteById("3");
+        String id = "3";
 
-        Optional<Notification> optionalNotification = sut.findById("3");
+        sut.save(new Notification(id, userId, NotificationType.LIKE, now, deletedAt));
+        sut.deleteById(id);
+        Optional<Notification> optionalNotification = sut.findById(id);
+
         assertFalse(optionalNotification.isPresent());
     }
 
