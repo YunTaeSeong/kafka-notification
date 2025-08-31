@@ -9,14 +9,22 @@ import java.time.Instant;
 @Getter
 @TypeAlias("CommentNotification") // 자바로 역직렬화를 할 때 자바로 어떤 클래스를 사용할것인지
 public class CommentNotification extends Notification {
+
     private final Long postId;
-    private final Long userId;
+    private final Long writerId;
     private final String comment;
 
-    public CommentNotification(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deletedAt, Long postId, Long userId1, String comment) {
+    public CommentNotification(String id,
+                               Long userId,
+                               NotificationType type,
+                               Instant occurredAt,
+                               Instant createdAt,
+                               Instant lastUpdatedAt,
+                               Instant deletedAt, Long postId, Long writerId, String comment
+    ) {
         super(id, userId, type, occurredAt, createdAt, lastUpdatedAt, deletedAt);
         this.postId = postId;
-        this.userId = userId1;
+        this.writerId = writerId;
         this.comment = comment;
     }
 }
