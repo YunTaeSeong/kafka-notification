@@ -23,5 +23,4 @@ public class MongoTemplateConfig {
     ){
         return new MongoTemplate(notificationMongoFactory, mongoConverter);
     }
-
 }

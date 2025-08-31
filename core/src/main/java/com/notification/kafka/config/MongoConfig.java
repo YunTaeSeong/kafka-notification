@@ -1,7 +1,6 @@
 package com.notification.kafka.config;
 
 import com.mongodb.ConnectionString;
-import com.mongodb.client.MongoDatabase;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;

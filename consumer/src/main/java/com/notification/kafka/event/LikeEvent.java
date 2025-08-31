@@ -1,13 +1,13 @@
 package com.notification.kafka.event;
 
-import lombok.Getter;
+import lombok.Data;
 
 import java.time.Instant;
 
-@Getter
+@Data
 public class LikeEvent {
     private LikeEventType type;
     private Long postId;
     private Long userId;
-    private Instant commentId; // 언제 좋아요를 눌렀는지
+    private Instant createdAt; // 언제 좋아요를 눌렀는지
 }

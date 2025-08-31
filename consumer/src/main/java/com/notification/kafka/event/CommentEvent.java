@@ -1,8 +1,8 @@
 package com.notification.kafka.event;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class CommentEvent {
     private CommentEventType type;
     private Long postId;

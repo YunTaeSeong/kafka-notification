@@ -1,10 +1,10 @@
 package com.notification.kafka.event;
 
-import lombok.Getter;
+import lombok.Data;
 
 import java.time.Instant;
 
-@Getter
+@Data
 public class FollowEvent {
     private FollowEventType type;
     private Long userId;
