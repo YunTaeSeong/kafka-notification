@@ -1,10 +1,13 @@
 package com.notification.kafka.event;
 
+import com.notification.kafka.notification.NotificationType;
 import com.notification.kafka.task.CommentAddTask;
+import com.notification.kafka.task.CommentRemoveTask;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.yaml.snakeyaml.comments.CommentType;
 
 import java.util.function.Consumer;
 
@@ -14,6 +17,7 @@ import java.util.function.Consumer;
 public class CommentEventConsumer {
 
     private final CommentAddTask commentAddTask;
+    private final CommentRemoveTask commentRemoveTask;
 
     // 여기서 정의된 함수의 이름이 application-event.yaml에 definition에 정의한 이름과 같아야함
     @Bean(name = "comment")
@@ -21,6 +25,8 @@ public class CommentEventConsumer {
         return event -> {
             if(event.getType() == CommentEventType.ADD) {
                 commentAddTask.processEvent(event);
+            } else if (event.getType() == CommentEventType.REMOVE) {
+                commentRemoveTask.processEvent(event);
             }
         };
     }

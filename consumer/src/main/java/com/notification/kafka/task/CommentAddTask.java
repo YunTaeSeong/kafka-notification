@@ -1,12 +1,15 @@
 package com.notification.kafka.task;
 
-import com.notification.kafka.*;
 import com.notification.kafka.comment.Comment;
 import com.notification.kafka.comment.CommentClient;
 import com.notification.kafka.comment.CommentNotification;
 import com.notification.kafka.event.CommentEvent;
 import com.notification.kafka.post.Post;
 import com.notification.kafka.post.PostClient;
+import com.notification.kafka.notification.Notification;
+import com.notification.kafka.notification.NotificationIdGenerator;
+import com.notification.kafka.notification.NotificationSaveService;
+import com.notification.kafka.notification.NotificationType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -49,7 +52,8 @@ public class CommentAddTask {
                 now.plus(90, ChronoUnit.DAYS),
                 post.getId(),
                 comment.getUserId(),
-                comment.getContent()
+                comment.getContent(),
+                comment.getId()
         );
     }
 }
