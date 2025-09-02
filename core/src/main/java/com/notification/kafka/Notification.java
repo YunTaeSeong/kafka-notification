@@ -6,12 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
-enum NotificationType {
-    LIKE,
-    COMMENT,
-    FOLLOW
-}
-
 @Getter
 @AllArgsConstructor
 @Document("notifications") // 자바 객체를 MongoDB 컬렉션에 매핑
