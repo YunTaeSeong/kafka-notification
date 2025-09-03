@@ -19,4 +19,7 @@ public interface NotificationRepository extends MongoRepository<Notification, St
     // ?0, ?1 : 파라미터 순서
     @Query("{ 'type' : ?0, 'commentId' : ?1 }")
     Optional<Notification> findByTypeAndCommentId(NotificationType type, Long commentId);
+
+    @Query("{'type' : ?0, 'postId' : ?1}")
+    Optional<Notification> findByTypeAndPostId(NotificationType type, Long postId);
 }
