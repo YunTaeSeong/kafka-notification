@@ -23,8 +23,13 @@ public class LikeNotification extends Notification {
 
     public void addLiker(Long likerId, Instant occurredAt, Instant now, Instant retention) {
         this.getLikerIds().add(likerId);
-        this.setOccurredAt(occurredAt);
+        this.setOccurredAt(occurredAt); // 이벤트가 발생한 시점에서는 api로 occurredAt 으로 정렬을 해서 List 에서 최상단 나오게 정렬
         this.setLastUpdatedAt(now);
         this.setDeletedAt(retention);
+    }
+
+    public void removeLiker(Long likerId, Instant now) {
+        this.getLikerIds().remove(likerId);
+        this.setLastUpdatedAt(now);
     }
 }
