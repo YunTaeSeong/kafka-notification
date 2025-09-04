@@ -21,4 +21,8 @@ public class NotificationGetService {
         return repository.findByTypeAndPostId(type, postId);
     }
 
+    public Optional<Notification> getNotificationByTypeAndUserIdAndFollowerId(NotificationType type, Long userId, Long followerId) {
+        return repository.findByTypeAndUserIdAndFollowerId(type, userId, followerId);
+    }
+
 }
