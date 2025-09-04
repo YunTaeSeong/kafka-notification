@@ -1,6 +1,7 @@
 package com.notification.kafka.api;
 
 import com.notification.kafka.event.CommentEvent;
+import com.notification.kafka.event.LikeEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,10 +14,18 @@ import java.util.function.Consumer;
 public class EventConsumerTestController implements EventConsumerTestControllerSpec{
 
     private final Consumer<CommentEvent> comment;
+    private final Consumer<LikeEvent> like;
 
     @PostMapping("/test/comment")
     @Override
     public void comment(@RequestBody CommentEvent event) {
         comment.accept(event);
     }
+
+    @PostMapping("/test/like")
+    @Override
+    public void like(@RequestBody LikeEvent event) {
+        like.accept(event);
+    }
+
 }
