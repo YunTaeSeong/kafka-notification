@@ -1,8 +1,8 @@
 package com.notification.kafka.task;
 
 import com.notification.kafka.event.CommentEvent;
-import com.notification.kafka.notification.NotificationGetService;
-import com.notification.kafka.notification.NotificationRemoveService;
+import com.notification.kafka.service.NotificationGetService;
+import com.notification.kafka.service.NotificationRemoveService;
 import com.notification.kafka.notification.NotificationType;
 import com.notification.kafka.post.Post;
 import com.notification.kafka.post.PostClient;

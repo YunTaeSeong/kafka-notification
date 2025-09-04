@@ -3,12 +3,14 @@ package com.notification.kafka.task;
 import com.notification.kafka.event.LikeEvent;
 import com.notification.kafka.like.LikeNotification;
 import com.notification.kafka.notification.*;
+import com.notification.kafka.service.NotificationGetService;
+import com.notification.kafka.service.NotificationRemoveService;
+import com.notification.kafka.service.NotificationSaveService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.Optional;
 
 @Component

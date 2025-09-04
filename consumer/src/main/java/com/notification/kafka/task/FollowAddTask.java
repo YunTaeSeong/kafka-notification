@@ -1,10 +1,9 @@
 package com.notification.kafka.task;
 
 import com.notification.kafka.event.FollowEvent;
-import com.notification.kafka.event.FollowEventType;
 import com.notification.kafka.follow.FollowNotification;
-import com.notification.kafka.notification.NotificationIdGenerator;
-import com.notification.kafka.notification.NotificationSaveService;
+import com.notification.kafka.utils.NotificationIdGenerator;
+import com.notification.kafka.service.NotificationSaveService;
 import com.notification.kafka.notification.NotificationType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
