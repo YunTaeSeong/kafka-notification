@@ -19,15 +19,15 @@
    - 실행파일: [docker-compose-single-kafka.yaml]
    - 카프카 명령어 정리: [docker-command.md]
 3. Consumer 서비스 실행
-   - `8081 포트`로 실행됩니다.
+   - `8081 포트`로 실행
    - Swagger 주소: http://localhost:8081/swagger-ui/index.html
 4. API 서비스 실행
-   - `8080 포트`로 실행됩니다.
+   - `8080 포트`로 실행
    - Swagger 주소: http://localhost:8080/swagger-ui/index.html
 
 ## 테스트 실행 방법
-- `test profile` 이 활성화됩니다.
-- Test Container 를 통해 실행된 MongoDB 와 Redis 인스턴스를 사용하여 독립적인 테스트 환경을 구축합니다.
+- `test profile` 이 활성화 됨
+- Test Container 를 통해 실행된 MongoDB 와 Redis 인스턴스를 사용하여 독립적인 테스트 환경을 구축
 
 ## MongoDB Index
 | 인덱스 생성 쿼리                                                                                               | 설명                                                      |
