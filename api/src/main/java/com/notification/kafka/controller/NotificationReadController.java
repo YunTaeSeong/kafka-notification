@@ -22,7 +22,7 @@ public class NotificationReadController implements NotificationReadControllerSpe
     public SetLastReadAtResponse setLastReadAt(
             @PathVariable Long userId
     ) {
-        Instant instant = service.lastReadAt(userId);
+        Instant instant = service.setLastReadAt(userId);
         return new SetLastReadAtResponse(instant);
     }
 }

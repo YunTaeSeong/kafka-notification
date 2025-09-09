@@ -12,8 +12,12 @@ public class LastReadAtService {
 
     private final NotificationReadRepository repository;
 
-    public Instant lastReadAt(Long userId) {
+    public Instant setLastReadAt(Long userId) {
         return repository.setLastReadAt(userId);
+    }
+
+    public Instant getLastReadAt(Long userId) {
+        return repository.getLastReadAt(userId);
     }
 
 }

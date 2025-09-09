@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -28,4 +29,9 @@ public class NotificationGetService {
         return repository.findByTypeAndUserIdAndFollowerId(type, userId, followerId);
     }
 
+    public Instant getLatestUpdatedAt(Long userId) {
+        Optional<Notification> notification = repository.findFirstByUserIdOrderByLastUpdatedAtDesc(userId);
+
+        return notification.map(Notification::getLastUpdatedAt).orElse(null);
+    }
 }
